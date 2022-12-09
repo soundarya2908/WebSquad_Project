@@ -1,35 +1,43 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './index.css';
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router";
+import {findUserByIdThunk, updateUserThunk} from "./users-thunk";
+import { findUserById } from './userprofile-service';
 
-const  UserProfilePage = (
-    {
-      user = { 
-        "profilephoto": "https://bootdey.com/img/Content/avatar/avatar5.png", 
-        "occupation":"user occupation",
-        "about": "user profile description", 
-        "website":"user website",  
-        "location":"user location",  
-        "companyname":"user compay name",
-        "position":"user work position",
-        "followers": 3,     
-        "following": 2,    
-        "liked": true ,    
-        "likes":  5 ,    
-        "posts": "reviews on past orders if any",   
-        "phone":"user's phone number",    
-        "firstname":"user's first name",   
-        "lastname":"user's last name",    
-        "email":"user's email",   
-        "dateofbirth":"user's date of birth", 
-        "dateofjoining":"user date of joining",   
-        "previousorders": "number of previous orders",    
-        "favorites": "favorite food places marked by the user",   
-        "previousorderslist": "", 
-        "favoriteslist": "array" 
-      } 
-    }
-) => {
- return (
+
+
+
+const  UserProfilePage = () => {
+  const navigate = useNavigate()
+
+  const {userprofile, loading} = useSelector((state) => state.userprofile);
+  const profile= useSelector((state) => state.profile);
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(findUserByIdThunk())
+    }, [])
+  console.log(userprofile);
+
+
+  const handleUpdateUserProfileBtn = () => {
+    
+    navigate('/updateUser')
+}
+// var myStringArray = userprofile;
+// var user1;
+// var user2;
+// var arrayLength = myStringArray.length;
+// for (var i = 0; i < arrayLength; i++) {
+//     user1= myStringArray[0];
+//     user2= myStringArray[1];
+//     console.log("user 1 is ",user1);
+//     console.log("user 2 is", user2);
+//     //Do something
+// }
+console.log(userprofile.firstName);
+ return (   
      <>
      <head>
      <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
@@ -45,21 +53,21 @@ const  UserProfilePage = (
           </div>
           <div class="panel-body">
             <div class="profile__avatar">
-              <img src={user.profilephoto} alt="..."/>
+              <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="..."/>
             </div>
             <div class="profile__header">
-              <h4>{user.firstname} {user.lastname}<small>{user.occupation}</small></h4>
+              <h4>{userprofile.firstName} {userprofile.lastName}<small>{userprofile.occupation}</small></h4>
               <p class="text-muted">
-                {user.about}
+                {userprofile.about}
               </p>
               <p>
-                <a href="#">{user.website}</a>
+                <a href="#">{userprofile.website}</a>
               </p>
             </div>
             <div class="profile__header">
-            &nbsp;&nbsp; <span><i class="bi bi-chat">&nbsp;{user.followers}   </i> &nbsp;Followers</span> &nbsp;&nbsp;&nbsp;&nbsp;
-                <span><i class="bi bi-repeat">&nbsp;{user.following}  </i>&nbsp; Following </span> &nbsp;&nbsp;&nbsp;&nbsp;
-                <span><i class="bi bi-hand-thumbs-up">&nbsp;{user.likes} </i>&nbsp; Likes</span>
+            &nbsp;&nbsp; <span><i class="bi bi-chat">&nbsp;{userprofile.followers}   </i> &nbsp;Followers</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                <span><i class="bi bi-repeat">&nbsp;{userprofile.following}  </i>&nbsp; Following </span> &nbsp;&nbsp;&nbsp;&nbsp;
+                <span><i class="bi bi-hand-thumbs-up">&nbsp;{userprofile.likes} </i>&nbsp; Likes</span>
 
             </div>
           </div>
@@ -74,19 +82,19 @@ const  UserProfilePage = (
               <tbody>
                 <tr>
                   <th><strong>Location</strong></th>
-                  <td>{user.location}</td>
+                  <td>{userprofile.location}</td>
                 </tr>
                 <tr>
                   <th><strong>Company name</strong></th>
-                  <td>{user.companyname}</td>
+                  <td>{userprofile.companyname}</td>
                 </tr>
                 <tr>
                   <th><strong>Position</strong></th>
-                  <td>{user.position}</td>
+                  <td>{userprofile.position}</td>
                 </tr>
                 <tr>
                   <th><strong>Date of Birth</strong></th>
-                  <td>{user.dateofbirth}</td>
+                  <td>{userprofile.dateofbirth}</td>
                 </tr>
               </tbody>
             </table>
@@ -106,15 +114,15 @@ const  UserProfilePage = (
                 </tr>
                 <tr>
                   <th><strong>Member since</strong></th>
-                  <td>{user.dateofjoining}</td>
+                  <td>{userprofile.dateofjoining}</td>
                 </tr>
                 <tr>
                   <th><strong><a href="#">Previous Food Orders</a></strong></th>
-                  <td>{user.previousorders}</td> 
+                  <td>{userprofile.previousorders}</td> 
                 </tr>
                 <tr>
                   <th><strong><a href="#">Favorites</a></strong></th>
-                  <td>{user.favorites}</td> 
+                  <td>{userprofile.favorites}</td> 
                 </tr>
               </tbody>
             </table>
@@ -194,9 +202,31 @@ const  UserProfilePage = (
           <a href="#" class="profile__contact-btn btn btn-lg btn-block btn-danger" data-toggle="modal" data-target="#profile__contact-form">
             Like
           </a>
-          <a href="#" class="profile__contact-btn btn btn-lg btn-block btn-warning" data-toggle="modal" data-target="#profile__contact-form">
-            Edit Profile
-          </a>
+
+          <button
+                className="profile__contact-btn btn btn-lg btn-block btn-warning" data-toggle="modal" data-target="#profile__contact-form"
+                onClick={() => dispatch(updateUserThunk({
+                  ...userprofile,
+                  likes: userprofile.likes + 1
+                }))}>
+                Like : {userprofile.likes}
+            </button>
+
+
+            {/* <span>
+     Likes: {tuit.likes}
+     <i onClick={() => dispatch(updateTuitThunk({
+       ...tuit,
+       likes: tuit.likes + 1
+     }))} className="bi bi-heart-fill me-2 text-danger"></i>
+   </span> */}
+
+
+          <button
+                className="profile__contact-btn btn btn-lg btn-block btn-warning" data-toggle="modal" data-target="#profile__contact-form"
+                onClick={handleUpdateUserProfileBtn}>
+                Edit Profile
+            </button>
         </p>
 
         <hr class="profile__contact-hr"/>

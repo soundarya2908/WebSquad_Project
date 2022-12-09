@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useState, useEffect} from "react";
 import $ from 'jquery';
-
+import {createProfile} from "../edit-profile/editprofile-reducer";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router";
+import { updateUserThunk, findUserByIdThunk } from "../profile/users-thunk";
 
 function EditUserProfile (){
     $(document).ready(function() {
@@ -23,6 +26,29 @@ function EditUserProfile (){
             readURL(this);
         });
     });
+
+
+const {userprofile, loading} = useSelector((state) => state.userprofile);
+const dispatch = useDispatch()
+useEffect(() => {
+  dispatch(findUserByIdThunk())
+  }, [])
+console.log(userprofile);
+const profile= useSelector(store => store.profile);
+const [profileData, setProfileData] = useState(profile);
+console.log(profile);
+console.log(profileData);
+const navigate = useNavigate();
+
+
+ const saveClickHandler = () => {
+       console.log(profileData, "From comp");
+      dispatch(updateUserThunk(profileData));   
+      
+      navigate("/userProfile");
+      window.location.reload()
+
+ }
     return(
         <>
 <head>
@@ -32,7 +58,7 @@ function EditUserProfile (){
 </head>
         <div class="container bootstrap snippet">
     <div class="row">
-  		<div class="col-sm-10"><h1>User name</h1></div>
+  		<div class="col-sm-10"><h1>Hi! {userprofile.firstName}</h1></div>
     </div>
     <div class="row">
   		<div class="col-sm-3">
@@ -46,35 +72,18 @@ function EditUserProfile (){
 
                
           <div class="panel panel-default">
-            <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
-            <div class="panel-body"><a href="http://bootnipets.com">bootnipets.com</a></div>
-          </div>
-          
-          
-          <ul class="list-group">
-            <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Shares</strong></span> 125</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li>
-          </ul> 
-               
-          <div class="panel panel-default">
-            <div class="panel-heading">Social Media</div>
+            <div class="panel-heading"><strong>Activity</strong>  <i class="bi bi-speedometer2"></i></div>
             <div class="panel-body">
-            	<i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
+            <ul class="list-group">
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Likes </strong> </span> {userprofile.likes}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> {userprofile.followers}</li>
+            </ul> 
             </div>
-          </div>
-          
+          </div>       
         </div>
-    	<div class="col-sm-9">
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-                <li><a data-toggle="tab" href="#messages">Menu 1</a></li>
-                <li><a data-toggle="tab" href="#settings">Menu 2</a></li>
-              </ul>
 
-              
+    	<div class="col-sm-9">
+             
           <div class="tab-content">
             <div class="tab-pane active" id="home">
                 <hr/>
@@ -82,64 +91,124 @@ function EditUserProfile (){
                       <div class="form-group">
                           
                           <div class="col-xs-6">
-                              <label for="first_name"><h4>First name</h4></label>
-                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any."/>
+                              <label for="first_name"><h4>First Name</h4> 
+                              </label>
+                              <input type="text" class="form-control" name="first_name" id="first_name"
+                              placeholder= {userprofile.firstName}
+                               onChange={(event) => setProfileData({...profileData, firstName:event.target.value})}
+                              title="enter your first name if any."/>
                           </div>
                       </div>
                       <div class="form-group">
                           
                           <div class="col-xs-6">
-                            <label for="last_name"><h4>Last name</h4></label>
-                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any."/>
+                            <label for="last_name"><h4>Last Name</h4></label>
+                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder={userprofile.lastName}
+                              onChange={(event) => setProfileData({...profileData, lastName:event.target.value})}
+                               title="enter your last name if any."/>
+                          </div>
+                      </div>
+          
+                      
+                      <div class="form-group">
+                          <div class="col-xs-6">
+                             <label for="username"><h4>Username</h4></label>
+                              <input type="text" class="form-control" name="username" id="username"
+                               placeholder={userprofile.username}
+                               onChange={(event) => setProfileData({...profileData, username:event.target.value})}
+                               title="enter your mobile number if any."/>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <div class="col-xs-6">
+                             <label for="password"><h4>Password</h4></label>
+                              <input type="password" class="form-control" name="password" id="password"
+                               placeholder={userprofile.password}
+                               onChange={(event) => setProfileData({...profileData, password:event.target.value})}
+                               title="enter your mobile number if any."/>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                              <label for="companyname"><h4>Company Name</h4></label>
+                              <input type="text" class="form-control" name="companyname" id="companyname" 
+                              placeholder={userprofile.companyname}
+                              onChange={(event) => setProfileData({...profileData, companyname:event.target.value})}
+                               title="enter your phone number if any."/>
                           </div>
                       </div>
           
                       <div class="form-group">
                           
                           <div class="col-xs-6">
-                              <label for="phone"><h4>Phone</h4></label>
-                              <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any."/>
+                              <label for="website"><h4>Website</h4></label>
+                              <input type="text" class="form-control" name="website" id="website" 
+                              placeholder={userprofile.website}
+                              onChange={(event) => setProfileData({...profileData, website:event.target.value})}
+                               title="enter your phone number if any."/>
                           </div>
                       </div>
           
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                             <label for="mobile"><h4>Mobile</h4></label>
-                              <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any."/>
-                          </div>
-                      </div>
                       <div class="form-group">
                           
                           <div class="col-xs-6">
                               <label for="email"><h4>Email</h4></label>
-                              <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email."/>
+                              <input type="email" class="form-control" name="email" id="email" 
+                              placeholder={userprofile.email}
+                              onChange={(event) => setProfileData({...profileData, email:event.target.value})}
+                               title="enter your email."/>
                           </div>
                       </div>
                       <div class="form-group">
                           
                           <div class="col-xs-6">
-                              <label for="email"><h4>Location</h4></label>
-                              <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location"/>
+                              <label for="location"><h4>Location</h4></label>
+                              <input type="text" class="form-control" name="location" id="location" 
+                              placeholder={userprofile.location}
+                              onChange={(event) => setProfileData({...profileData, location:event.target.value})}
+                               title="enter your email."/>
                           </div>
                       </div>
                       <div class="form-group">
                           
                           <div class="col-xs-6">
-                              <label for="password"><h4>Password</h4></label>
-                              <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password."/>
+                              <label for="occupation"><h4>Occupation</h4></label>
+                              <input type="text" class="form-control" id="occupation" 
+                              placeholder={userprofile.occupation}
+                              onChange={(event) => setProfileData({...profileData, occupation:event.target.value})}
+                               title="enter a location"/>
                           </div>
                       </div>
                       <div class="form-group">
                           
                           <div class="col-xs-6">
-                            <label for="password2"><h4>Verify</h4></label>
-                              <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2."/>
+                              <label for="dateofbirth"><h4>Date of Birth</h4></label>
+                              <input type="date" class="form-control" name="dateofbirth"
+                               id="dateofbirth" placeholder={userprofile.dateofbirth} 
+                               onChange={(event) => setProfileData({...profileData, dateofbirth:event.target.value})}
+                               title="enter your password."/>
+                          </div>
+                      </div>
+
+                      
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                            <label for="about"><h4>About</h4></label>
+                            
+                              <input type="text" class="form-control" 
+                              name="about" id="about" placeholder= {userprofile.about}
+                              onChange={(event) => setProfileData({...profileData, about:event.target.value})}
+                               title="enter your password2."/>
+                            
                           </div>
                       </div>
                       <div class="form-group">
                            <div class="col-xs-12">
                                 <br/>
-                              	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                              	<button class="btn btn-lg btn-success" type="submit"  onClick={saveClickHandler}><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
                                	<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
                             </div>
                       </div>
@@ -148,7 +217,7 @@ function EditUserProfile (){
               <hr/>
               
              </div>
-             <div class="tab-pane" id="messages">
+             {/* <div class="tab-pane" id="messages">
                
                <h2></h2>
                
@@ -290,7 +359,7 @@ function EditUserProfile (){
                             </div>
                       </div>
               	</form>
-              </div>
+              </div> */}
                
               </div>
           </div>
