@@ -16,7 +16,9 @@ const DonorDetails = () => {
         state => state.donorsData)
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(findDonorByIdThunk(donorID))
+        dispatch(findDonorByIdThunk(donorID)).then(()=>{
+            console.log('Hello here');
+        })
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[dispatch])
     
@@ -28,12 +30,12 @@ const DonorDetails = () => {
                      </li>
             }
             {
-                customer &&
-                <CustomerViewOfDonor key={donor._id} donor={donor}/>
-            }
-            {
                 !customer &&
                 <DonorViewOfDonor key={donor._id} donor={donor}/>
+            }
+            {
+                customer &&
+                <CustomerViewOfDonor key={donor._id} donor={donor}/>
             }
             {/*<pre>*/}
             {/*    {JSON.stringify(donor, null, 2)}*/}

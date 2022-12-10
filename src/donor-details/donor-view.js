@@ -31,6 +31,7 @@ const DonorViewOfDonor = (
       }
   }
 ) => {
+    console.log(donor)
     let [edit, setEdit] = useState(false);
 
     const editHandler = () => {
