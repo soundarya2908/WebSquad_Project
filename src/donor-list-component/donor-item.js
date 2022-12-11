@@ -1,53 +1,98 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from 'antd';
 
-const DonorItem = (
-    {
-        donor = {
-            _id: "123",
-            userName: "rest1",
-            name: "restaurant1",
-            location: "boston",
-            image: "changing-lifes.jpg",
-            dp: "logo.png",
-            about : "about the donor1",
-            followers: 123,
-            following: 234,
-            liked: true,
-            likes: 14,
-            rating: 4.2,
-            foodavailable: {
-                "apple pie": 2,
-                "pasta": 10
-            },
-            foodavailabilityposts: "array",
-            storetimings:"10:00am to 9:00pm",
-            rewardpoints: 987,
-            foodreviews: {
-                "review1": "best place!",
-                "review2": "decent place to find food"
-            }
-        }
-    }
-) => {
-    // console.log(donor._id)
-    return(
-        <Link to={`/donor/${donor.userName}`} className="text-decoration-none">
-            <div className="pb-3">
-                <div className="card text-start">
-                    <img src={`/images/${donor.image}`} className="card-img-top" height="200px" alt="..."/>
-                    <div className="card-body">
-                        <div className="row">
-                            <h6 className="col-8">{donor.name}</h6>
-                            <h6 className="col-4 small text-end">{donor.rating}</h6>
-                        </div>
-                        <h6 className="small text-muted">{donor.location}</h6>
-                        <div className="small text-muted">Open: {donor.storetimings}</div>
-                    </div>
-                </div>
+const DonorItem = ({
+  donor = {
+    _id: '123',
+    userName: 'rest1',
+    name: 'restaurant1',
+    location: 'boston',
+    image: 'changing-lifes.jpg',
+    dp: 'logo.png',
+    about: 'about the donor1',
+    followers: 123,
+    following: 234,
+    liked: true,
+    likes: 14,
+    rating: 4.2,
+    foodavailable: {
+      'apple pie': 2,
+      pasta: 10,
+    },
+    foodavailabilityposts: 'array',
+    storetimings: '10:00am to 9:00pm',
+    rewardpoints: 987,
+    foodreviews: {
+      review1: 'best place!',
+      review2: 'decent place to find food',
+    },
+  },
+}) => {
+  // console.log(donor._id)
+  return (
+    <Link to={`/donor/${donor.userName}`} className="text-decoration-none">
+      <div className="pb-3">
+        <div
+          className="card text-start border-0"
+          style={{ borderRadius: '15px' }}
+        >
+          <div className="m-3" style={{ borderRadius: '15px' }}>
+            <img
+              src={`/images/${donor.image}`}
+              className="card-img-top"
+              height="250px"
+              alt="..."
+              style={{ borderRadius: '15px' }}
+            />
+          </div>
+          <div className="card-body">
+            <div className="row">
+              <h4
+                className="col-8"
+                style={{ color: '#000000', fontWeight: 700 }}
+              >
+                {donor.name}
+              </h4>
+              <h4 className="col-4 large text-end">{donor.rating}</h4>
             </div>
-        </Link>
-    )
-}
+            <h5 className="small">{donor.location}</h5>
+            <div className="pb-2" style={{ fontSize: '15px' }}>
+              {' '}
+              <span
+                style={{ color: '#F26419', fontWeight: 600, fontSize: '15px' }}
+              >
+                Open:{' '}
+              </span>
+              {donor.storetimings}
+            </div>
+            <div>
+              <p className="text-black">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation{' '}
+              </p>
+            </div>
+
+            <div className="w-100">
+              <Button
+                type="primary"
+                size={'large'}
+                style={{
+                  height: '50px',
+                  width: '100%',
+                  fontSize: '16px',
+                  fontWeight: 700,
+                }}
+              >
+                Browse Menu
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
+};
 
 export default DonorItem;

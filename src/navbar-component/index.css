@@ -1,6 +1,6 @@
 .ws-background {
   /*background-image: url("../../public/images/italian-ingredients.webp");*/
-  background-image: url('../../public/images/changing-lives.jpg');
+  background-image: url('../../public/images/changing-lives-6.jpg');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -10,11 +10,4 @@
 }
 .ws-nav-bar {
   opacity: 0.95;
-}
-.ws-logo {
-  width: 50px;
-}
-.ws-landing-card {
-  /* background-color: #61dafb; */
-  width: 80%;
 }
