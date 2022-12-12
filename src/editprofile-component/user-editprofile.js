@@ -53,7 +53,6 @@ const navigate = useNavigate();
        
       dispatch(updateUserThunk(profileData));   
       setSaveSuccess(true)
-      navigate("/profile");
      
 
  }

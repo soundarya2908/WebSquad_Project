@@ -29,6 +29,7 @@ const profileSlice = createSlice({
       },
       [updateUserThunk.fulfilled]: (state, {payload}) => {
         state.loading2 = false
+        console.log("resucer",payload)
         state.userprofile = payload
     }
      
