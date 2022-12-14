@@ -59,7 +59,7 @@ function HomePage({ updateUser, userState }) {
           </div>
         </div>
       </div>
-      <DonorList />
+      <DonorList status={'Approved'} />
     </>
   );
 }

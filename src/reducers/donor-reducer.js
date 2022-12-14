@@ -8,7 +8,7 @@ import {
 
 const initialState = {
   donors: [],
-  loading: false,
+  donorsloading: true,
   donor: [],
   loading2: true,
 };
@@ -18,15 +18,15 @@ const donorSlice = createSlice({
   initialState,
   extraReducers: {
     [findDonorThunk.pending]: (state) => {
-      state.loading = true;
+      state.donorsloading = true;
       state.donors = [];
     },
     [findDonorThunk.fulfilled]: (state, { payload }) => {
-      state.loading = false;
+      state.donorsloading = false;
       state.donors = payload;
     },
     [findDonorThunk.rejected]: (state) => {
-      state.loading = false;
+      state.donorsloading = false;
     },
     [findDonorByUsernameThunk.pending]: (state) => {
       state.loading2 = true;
@@ -44,22 +44,8 @@ const donorSlice = createSlice({
       state.loading2 = false;
     },
     [updateDonorThunk.fulfilled]: (state, { payload }) => {
-      state.loading = false;
+      state.donorsloading = false;
       state.donor = payload;
-      // console.log('payload', payload)
-      // const donorIndex = state.donors.findIndex((donor) =>  {
-      //     console.log(donor)
-      // //    console.log(typeof (donor._id))
-      //     // console.log(typeof (payload._id))
-      //     return donor._id === payload._id
-      // })
-      // console.log('donorIndex')
-      // console.log(donorIndex)
-      // state.donor = payload
-      // {
-      //     ...state.donor[donorIndex],
-      //     ...payload
-      // }
     },
   },
 });

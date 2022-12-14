@@ -1,37 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
+import { useSelector } from 'react-redux';
 
-const DonorItem = ({
-  donor = {
-    _id: '123',
-    userName: 'rest1',
-    name: 'restaurant1',
-    location: 'boston',
-    image: 'changing-lifes.jpg',
-    dp: 'logo.png',
-    about: 'about the donor1',
-    followers: 123,
-    following: 234,
-    liked: true,
-    likes: 14,
-    rating: 4.2,
-    foodavailable: {
-      'apple pie': 2,
-      pasta: 10,
-    },
-    foodavailabilityposts: 'array',
-    storetimings: '10:00am to 9:00pm',
-    rewardpoints: 987,
-    foodreviews: {
-      review1: 'best place!',
-      review2: 'decent place to find food',
-    },
-  },
-}) => {
+const DonorItem = ({ donor }) => {
   // console.log(donor._id)
+  const linkTo = useSelector((state) => !state.users.currentUser)
+    ? '/login'
+    : `/donor/${donor.userName}`;
+  console.log(linkTo);
   return (
-    <Link to={`/donor/${donor.userName}`} className="text-decoration-none">
+    <Link to={linkTo} className="text-decoration-none">
       <div className="pb-3">
         <div
           className="card text-start border-0"

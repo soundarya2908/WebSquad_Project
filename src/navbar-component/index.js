@@ -67,6 +67,17 @@ function NavBar({ userState }) {
                         Login / Sign Up
                       </Button>
                     </Link>
+                    <Link to="/profile">
+                      <Button
+                        type="primary"
+                        shape="round"
+                        // icon={<DownloadOutlined />}
+                        className="float-end me-3"
+                        size={'large'}
+                      >
+                        Profile
+                      </Button>
+                    </Link>
                   </div>
                 </div>
 
@@ -175,6 +186,17 @@ function NavBar({ userState }) {
                   size={'large'}
                 >
                   Login / Sign Up
+                </Button>
+              </Link>
+              <Link to="/profile">
+                <Button
+                  type="primary"
+                  shape="round"
+                  // icon={<DownloadOutlined />}
+                  className="float-end me-3"
+                  size={'large'}
+                >
+                  Profile
                 </Button>
               </Link>
             </div>

@@ -6,8 +6,9 @@ import CustomerViewOfDonor from './customer-view';
 import DonorViewOfDonor from './donor-view';
 import { findDonorByUsernameThunk } from '../services/donor-thunks';
 
+//solved by manual resolution
 const DonorDetails = ({ updateUser, userState }) => {
-  const customer = true;
+  const currentUser = useSelector((state) => state.users.currentUser);
 
   const { pathname } = useLocation();
   const paths = pathname.split('/');
@@ -21,6 +22,10 @@ const DonorDetails = ({ updateUser, userState }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
+  console.log(donor, 'this is donor');
+  console.log(donor.userName, 'this is donor username');
+  console.log(currentUser.userName, 'this is current user username');
+
   useEffect(() => {
     console.log(donorID, 'donor');
     if (test === 'donor') {
@@ -28,14 +33,15 @@ const DonorDetails = ({ updateUser, userState }) => {
     }
   }, []);
 
+  // solved
   return (
     <>
       {loading2 ? (
         <li className="list-group-item">Loading...</li>
-      ) : customer ? (
-        <CustomerViewOfDonor key={donor._id} donor={donor} />
-      ) : (
+      ) : donor.userName === currentUser.userName ? (
         <DonorViewOfDonor key={donor._id} donor={donor} />
+      ) : (
+        <CustomerViewOfDonor key={donor._id} donor={donor} />
       )}
     </>
   );

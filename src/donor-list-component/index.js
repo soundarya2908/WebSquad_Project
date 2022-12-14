@@ -5,18 +5,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { findDonorThunk } from '../services/donor-thunks';
 import { useLocation } from 'react-router-dom';
 
-const DonorList = ({ updateUser, userState }) => {
+const DonorList = ({ status, updateUser, userState }) => {
   const { donors, loading } = useSelector((state) => state.donorsData);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(findDonorThunk());
+    dispatch(findDonorThunk(status));
   }, [dispatch]);
+
+  console.log(donors);
 
   const { pathname } = useLocation();
   const paths = pathname.split('/');
   const donorID = paths[1];
 
-  console.log(donorID);
+  // console.log(donorID);
 
   useEffect(() => {
     if (donorID === 'home') {
