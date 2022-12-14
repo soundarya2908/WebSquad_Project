@@ -1,6 +1,5 @@
 import React from 'react';
 import { Steps } from 'antd';
-const description = 'This is a description.';
 
 function LandingFind() {
   return (
@@ -14,16 +13,16 @@ function LandingFind() {
           current={2}
           items={[
             {
-              title: 'Finished',
-              description,
+              title: 'Start-off',
+              description: 'Register as a customer',
             },
             {
               title: 'Progress',
-              description,
+              description: 'Find the store of your choice',
             },
             {
-              title: 'Waiting',
-              description,
+              title: 'Finished',
+              description: 'Order and take out',
             },
           ]}
         />

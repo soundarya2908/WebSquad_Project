@@ -1,6 +1,5 @@
 import React from 'react';
 import { Steps } from 'antd';
-const description = 'This is a description.';
 
 function LandingDonate() {
   return (
@@ -14,16 +13,16 @@ function LandingDonate() {
           current={2}
           items={[
             {
-              title: 'Finished',
-              description,
+              title: 'Start-off',
+              description: 'Register as a donor, wait for approval',
             },
             {
               title: 'In Progress',
-              description,
+              description: 'Update your inventory everyday',
             },
             {
-              title: 'Waiting',
-              description,
+              title: 'Finished',
+              description: 'Donate to make a change',
             },
           ]}
         />

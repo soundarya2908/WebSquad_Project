@@ -56,14 +56,14 @@ const CustomerViewOfDonor = ({ donor }) => {
           <div className="main_image">
             <img
               className="w-100 rounded-2"
-              src={`/images/${donor.image}`}
+              src={`/images/${donor.coverPhoto}`}
               alt="landing background"
             />
           </div>
           <div className="overlay_image">
             <img
               className="w-100 rounded-pill float-start"
-              src={`/images/${donor.dp}`}
+              src={`/images/${donor.profilePhoto}`}
               alt="profile"
             />
           </div>

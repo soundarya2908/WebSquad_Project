@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Search from '../search';
 import './index.css';
-import { Button, Radio, Space, Divider } from 'antd';
+import { Button } from 'antd';
 
 function NavBar({ userState }) {
   return (
@@ -97,8 +97,9 @@ function NavBar({ userState }) {
                         Hungry? You're in the right place
                       </h1>
                       <p style={{ width: '50%', fontSize: '20px' }}>
-                        Web Squads are changing the world by building this app.
-                        Loreum ipsum text for the testing and random shit go.
+                        Web Squads are changing the world by building this app.<br/>
+                        Edibles left? Go on and make a change by donating!<br/>
+                        Need them? We are here to find someone out there to help you!
                       </p>
                       <Link to="/login">
                         <Button
