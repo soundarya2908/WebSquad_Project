@@ -13,8 +13,6 @@ function HomePage({ updateUser, userState }) {
   const paths = pathname.split('/');
   const donorID = paths[1];
 
-  console.log(donorID);
-
   useEffect(() => {
     if (donorID === '') {
       updateUser(false);

@@ -26,7 +26,6 @@ function RegisterCustomer() {
     const [phone, setPhone] = useState("12345678")
     const [error, setError] = useState(null)
     const role = "DONOR"
-    const [dateOfBirth, setDateOfBirth] = useState(null)
     const dispatch = useDispatch()
     const handleRegisterBtn = () => {
         if (password !== validatePassword) {
@@ -34,7 +33,7 @@ function RegisterCustomer() {
             return
         }
         setError(null)
-        const newUser = {userName, name, email, password, location, phone, role, dateOfBirth}
+        const newUser = {userName, name, email, password, location, phone, role}
         dispatch(registerThunk(newUser))
     }
 
@@ -70,7 +69,6 @@ function RegisterCustomer() {
                 <MDBInput wrapperClass='mb-4' label='Password' id='formControlLg' type='password' size="lg" onChange={(e) => setPassword(e.target.value)}/>
                 <MDBInput wrapperClass='mb-4' label='Confirm password' id='formControlLg' type='password' size="lg" onChange={(e) => setValidatePassword(e.target.value)}/>
                 <MDBInput wrapperClass='mb-4' label='Address' id='formControlLg' type='text' size="lg" onChange={(e) => setLocation(e.target.value)}/>
-                <MDBInput wrapperClass='mb-4' label='Date of birth' id='formControlLg' type='date' size="lg" onChange={(e) => setDateOfBirth(e.target.value)}/>
                 <MDBInput wrapperClass='mb-4' label='Phone' id='formControlLg' type='text' size="lg" onChange={(e) => setPhone(e.target.value)}/>
 
               <MDBBtn className="mb-4 px-5" color='dark' size='lg' onClick={() => handleRegisterBtn()}><Link to="/login">Register as donor</Link></MDBBtn>

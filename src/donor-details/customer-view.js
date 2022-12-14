@@ -25,6 +25,7 @@ const CustomerViewOfDonor = ({ donor }) => {
 
   const UpdateOrderHandler = () => {
     return (
+      <>
       <div className="col-3">
         <div className="card">
           <h5>Your Cart</h5>
@@ -36,6 +37,7 @@ const CustomerViewOfDonor = ({ donor }) => {
           </Button>
         </div>
       </div>
+      </>
     );
   };
 

@@ -2,11 +2,16 @@ import { Link } from 'react-router-dom';
 import Search from '../search';
 import './index.css';
 import { Button } from 'antd';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutThunk } from '../users/user-thunks';
 
 function NavBar({ userState }) {
   const {currentUser} = useSelector((state) => state.users)
-  console.log('currentUser in: ', currentUser);
+
+  const dispatch = useDispatch();
+  const handleLogoutBtn = () => {
+    dispatch(logoutThunk());
+  };
   
   return (
     <>
@@ -73,13 +78,14 @@ function NavBar({ userState }) {
                           Login / Sign Up
                         </Button>
                       </Link> :
-                      <Link to="/logout">
+                      <Link to="/">
                         <Button
                           type="primary"
                           shape="round"
                           // icon={<DownloadOutlined />}
                           className="float-end me-3"
                           size={'large'}
+                          onClick={() => handleLogoutBtn()}
                         >
                           Logout
                         </Button>
@@ -200,28 +206,46 @@ function NavBar({ userState }) {
               </nav>
             </div>
             <div className="col-4 align-self-center float-end">
-              <Link to="/login">
-                <Button
-                  type="primary"
-                  shape="round"
-                  // icon={<DownloadOutlined />}
-                  className="float-end me-3"
-                  size={'large'}
-                >
-                  Login / Sign Up
-                </Button>
-              </Link>
-              <Link to="/profile">
-                <Button
-                  type="primary"
-                  shape="round"
-                  // icon={<DownloadOutlined />}
-                  className="float-end me-3"
-                  size={'large'}
-                >
-                  Profile
-                </Button>
-              </Link>
+            {
+                    !currentUser ?
+                      <Link to="/login">
+                        <Button
+                          type="primary"
+                          shape="round"
+                          // icon={<DownloadOutlined />}
+                          className="float-end me-3"
+                          size={'large'}
+                        >
+                          Login / Sign Up
+                        </Button>
+                      </Link> :
+                      <Link to="/">
+                        <Button
+                          type="primary"
+                          shape="round"
+                          // icon={<DownloadOutlined />}
+                          className="float-end me-3"
+                          size={'large'}
+                          onClick={() => handleLogoutBtn()}
+                        >
+                          Logout
+                        </Button>
+                      </Link>
+                    }
+                    {
+                      currentUser && 
+                      <Link to="/profile">
+                      <Button
+                        type="primary"
+                        shape="round"
+                        // icon={<DownloadOutlined />}
+                        className="float-end me-3"
+                        size={'large'}
+                      >
+                        Profile
+                      </Button>
+                    </Link>
+                    }
             </div>
           </div>
         </div>
