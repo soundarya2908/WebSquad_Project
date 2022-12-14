@@ -2,8 +2,12 @@ import { Link } from 'react-router-dom';
 import Search from '../search';
 import './index.css';
 import { Button } from 'antd';
+import { useSelector } from 'react-redux';
 
 function NavBar({ userState }) {
+  const {currentUser} = useSelector((state) => state.users)
+  console.log('currentUser in: ', currentUser);
+  
   return (
     <>
       {!userState ? (
@@ -56,18 +60,34 @@ function NavBar({ userState }) {
                     </nav>
                   </div>
                   <div className="col-4 align-self-center float-end">
-                    <Link to="/login">
-                      <Button
-                        type="primary"
-                        shape="round"
-                        // icon={<DownloadOutlined />}
-                        className="float-end me-3"
-                        size={'large'}
-                      >
-                        Login / Sign Up
-                      </Button>
-                    </Link>
-                    <Link to="/profile">
+                    {
+                    !currentUser ?
+                      <Link to="/login">
+                        <Button
+                          type="primary"
+                          shape="round"
+                          // icon={<DownloadOutlined />}
+                          className="float-end me-3"
+                          size={'large'}
+                        >
+                          Login / Sign Up
+                        </Button>
+                      </Link> :
+                      <Link to="/logout">
+                        <Button
+                          type="primary"
+                          shape="round"
+                          // icon={<DownloadOutlined />}
+                          className="float-end me-3"
+                          size={'large'}
+                        >
+                          Logout
+                        </Button>
+                      </Link>
+                    }
+                    {
+                      currentUser && 
+                      <Link to="/profile">
                       <Button
                         type="primary"
                         shape="round"
@@ -78,6 +98,8 @@ function NavBar({ userState }) {
                         Profile
                       </Button>
                     </Link>
+                    }
+                    
                   </div>
                 </div>
 
