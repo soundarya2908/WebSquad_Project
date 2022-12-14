@@ -15,6 +15,7 @@ function LoginRegister({ updateUser, userState }) {
   const paths = pathname.split('/');
   const test = paths[1];
 
+  // adding small changes
   useEffect(() => {
     console.log(test, 'test');
     if (test === 'login') {
