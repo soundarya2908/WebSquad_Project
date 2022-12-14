@@ -3,7 +3,7 @@ import React, { Fragment, useState } from 'react';
 import HomePage from './home-component/index.js';
 import { BrowserRouter } from 'react-router-dom';
 import { Routes, Route } from 'react-router';
-import LoginRegister from './login-register-component';
+
 import ProfilePage from './profile-component';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
