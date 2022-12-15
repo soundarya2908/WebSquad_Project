@@ -11,8 +11,6 @@ const CustomerViewOfDonor = ({ donor }) => {
 
   const [order, setOrder] = useState(false);
   let food = donor.inventory;
-  // console.log('donor: ', donor);
-  // console.log('donor.inventory: ', donor.inventory);
   const dispatch = useDispatch();
 
   const addOrderHandler = (key, avail) => {
@@ -58,14 +56,14 @@ const CustomerViewOfDonor = ({ donor }) => {
           <div className="main_image">
             <img
               className="w-100 rounded-2"
-              src={`/images/${donor.coverPhoto}`}
+              src={`./images/${donor.coverPhoto}`}
               alt="landing background"
             />
           </div>
           <div className="overlay_image">
             <img
               className="w-100 rounded-pill float-start"
-              src={`/images/${donor.profilePhoto}`}
+              src={`./images/${donor.profilePhoto}`}
               alt="profile"
             />
           </div>

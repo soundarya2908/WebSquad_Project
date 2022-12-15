@@ -8,7 +8,6 @@ function ProfilePage({ updateUser, userState }) {
   const test = paths[1];
 
   useEffect(() => {
-    console.log(test, 'test');
     if (test === 'profile') {
       updateUser(true);
     }

@@ -11,9 +11,7 @@ function ApiCall() {
     const {items, itemsLoading} = useSelector(
         state => state.itemsData)
     const handlesearch = () => {
-        console.log(input)
         // dispatch(findItemsThunk(input))
-        // console.log("loading " + itemsLoading + " items :" + items)
 
         const options = {
             method: 'GET',
@@ -40,8 +38,6 @@ function ApiCall() {
         };
 
         axios.request(options).then(function (response) {
-            console.log(response.data);
-            console.log(response.data.results[0].name)
             return (
                 <>
                     <p>{response.data.results[0].name}</p>
@@ -50,7 +46,7 @@ function ApiCall() {
                    )
 
         }).catch(function (error) {
-            console.error(error);
+            //console.error(error);
         });
     }
 

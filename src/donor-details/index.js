@@ -22,12 +22,7 @@ const DonorDetails = ({ updateUser, userState }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
-  console.log(donor, 'this is donor');
-  console.log(donor.userName, 'this is donor username');
-  console.log(currentUser.userName, 'this is current user username');
-
   useEffect(() => {
-    console.log(donorID, 'donor');
     if (test === 'donor') {
       updateUser(true);
     }

@@ -34,10 +34,10 @@ const EditInventory = (
         <div className="container ps-5 pe-5">
             <div className="image-container">
                 <div className="main_image">
-                    <img className="w-100 mt-2 rounded-2" src={`/images/${donor.coverPhoto}`} alt="landing background"/>
+                    <img className="w-100 mt-2 rounded-2" src={`./images/${donor.coverPhoto}`} alt="landing background"/>
                 </div>
                 <div className="overlay_image">
-                    <img className="w-100 rounded-pill float-start" src={`/images/${donor.profilePhoto}`} alt="profile"/>
+                    <img className="w-100 rounded-pill float-start" src={`./images/${donor.profilePhoto}`} alt="profile"/>
                 </div>
             </div>
 

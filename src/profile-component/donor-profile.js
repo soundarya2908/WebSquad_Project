@@ -16,7 +16,6 @@ const  DonorProfilePage = () => {
   useEffect(() => {
     dispatch(findDonorByUsernameThunk(username))
     }, [])
-  console.log(donorsData);
   
   
  const handleOrders = () =>{
@@ -33,8 +32,6 @@ const  DonorProfilePage = () => {
 // for (var i = 0; i < arrayLength; i++) {
 //     user1= myStringArray[0];
 //     user2= myStringArray[1];
-//     console.log("user 1 is ",user1);
-//     console.log("user 2 is", user2);
 //     //Do something
 // }
  return (   

@@ -4,11 +4,9 @@ import { Button } from 'antd';
 import { useSelector } from 'react-redux';
 
 const DonorItem = ({ donor }) => {
-  // console.log(donor._id)
   const linkTo = useSelector((state) => !state.users.currentUser)
     ? '/login'
     : `/donor/${donor.userName}`;
-  console.log(linkTo);
   return (
     <Link to={linkTo} className="text-decoration-none">
       <div className="pb-3">
@@ -18,7 +16,7 @@ const DonorItem = ({ donor }) => {
         >
           <div className="m-3" style={{ borderRadius: '15px' }}>
             <img
-              src={`/images/${donor.profilePhoto}`}
+              src={`./images/${donor.profilePhoto}`}
               className="card-img-top"
               height="250px"
               alt="..."

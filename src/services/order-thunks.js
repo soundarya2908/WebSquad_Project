@@ -16,6 +16,6 @@ export const findOrderByCustomerIdThunk = createAsyncThunk(
 export const createOrderThunk = createAsyncThunk(
     'order/createOrder', async (thunkAPI) => {
         await service.createOrder(thunkAPI)
-        console.log(thunkAPI)
+        //console.log(thunkAPI)
     }
 )
