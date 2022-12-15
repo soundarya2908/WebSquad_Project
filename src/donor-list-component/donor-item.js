@@ -18,7 +18,7 @@ const DonorItem = ({ donor }) => {
         >
           <div className="m-3" style={{ borderRadius: '15px' }}>
             <img
-              src={`/images/${donor.image}`}
+              src={`/images/${donor.profilePhoto}`}
               className="card-img-top"
               height="250px"
               alt="..."
