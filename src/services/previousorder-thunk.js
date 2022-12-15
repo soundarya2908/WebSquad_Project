@@ -3,6 +3,7 @@ import * as service from "./previousorder-service"
 
 export const findPreviousOrdersByCustomernameThunk = createAsyncThunk(
   'order/findPreviousOrdersByCustomername', async (customername) =>{
+    console.log(customername)
     const orders= await service.findPreviousOrdersByCustomername(customername)
     console.log(customername)
     console.log(orders)

@@ -13,6 +13,8 @@ export const findOrders = async () => {
 }
 export const findOrderByDonorId = async (did) => {
     const response = await axios.get(`${ORDER_API}/ordersDonor/${did}`)
+    console.log(did)
+    console.log(response.data)
     return response.data
 }
 export const findOrderByCustomerId = async (cid) => {

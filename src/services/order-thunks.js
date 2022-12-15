@@ -6,8 +6,12 @@ export const findOrderThunk = createAsyncThunk(
         await service.findOrders()
 )
 export const findOrderByDonorIdThunk = createAsyncThunk(
-    'order/findOrderByDonorId', async(donorId) =>
-        await service.findOrderByDonorId(donorId)
+    'order/findOrderByDonorId', async(donorId) =>{
+                const orders= await service.findOrderByDonorId(donorId)
+                console.log(donorId)
+                console.log(orders)
+                return orders
+    }
 )
 export const findOrderByCustomerIdThunk = createAsyncThunk(
     'order/findOrderByCustomerId', async(cid) =>

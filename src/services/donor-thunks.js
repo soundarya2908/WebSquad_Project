@@ -9,7 +9,10 @@ export const findDonorThunk = createAsyncThunk(
 export const findDonorByUsernameThunk = createAsyncThunk(
     'donor/findDonorById',
     async(donorId) => {
-        return await service.findDonorByUsername(donorId)
+        console.log(donorId)
+        const donors= await service.findDonorByUsername(donorId)
+        console.log(donors)
+        return donors
     }
 )
 export const deleteDonorThunk = createAsyncThunk(

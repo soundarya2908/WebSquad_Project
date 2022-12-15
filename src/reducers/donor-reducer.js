@@ -41,6 +41,7 @@ const donorSlice = createSlice({
         [findDonorByUsernameThunk.fulfilled]: (state, {payload}) => {
             state.loading2 = false
             state.donor = payload
+            console.log(payload)
         },
         [findDonorByUsernameThunk.rejected]: (state) => {
             state.loading2 = false

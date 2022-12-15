@@ -18,11 +18,16 @@ import editprofileReducer from "./reducers/editprofile-reducer";
 import searchReducer from "./reducers/search-reducer";
 import previousorderReducer from './reducers/previousorder-reducer';
 import PreviousOrders from './profile-component/previous-orders';
-import UserProfilePrivatePage from './profile-component/userprofile-private';
 import userReducer from './users/user-reducer';
 import AdminPage from "./admin";
 import Login from './login-register-component/login-component';
 import Register from './login-register-component/register-component';
+import UserProfilePublicPage from './profile-component/userprofile-public';
+import DonorProfilePage from './profile-component/donor-profile';
+import Im from './editprofile-component/image';
+import PreviousDonorOrders from './profile-component/previous-donors-orders';
+import EditDonorUserProfile from './editprofile-component/donor-editprofile';
+import DonorProfilePublicPage from './profile-component/donorprofile-public';
 
 const store = configureStore(
     {reducer: {
@@ -40,24 +45,33 @@ function App() {
   return (
       <Provider store={store}>
           <BrowserRouter>
+              <div>
               <NavBar/>
+              </div>
               <div className="App">
                   <Routes>
                       <Route path="/" element={<HomePage/>}/>
                       <Route path="/login" element={<Login/>}/>
                       <Route path="/register" element={<Register/>}/>
+
+
                       {
                         store.getState().users &&
                       <Fragment>
                             <Route path="/profile/*" element={<ProfilePage/>}/>
+                            <Route path="/image" element={<Im/>}/>
+                            <Route path="/donorprofile/" element={<DonorProfilePage/>}/>
                             <Route path="/home" element={<DonorList status = {"Approved"}/>}/>
                             <Route path="/updateUser" element={<EditUserProfile/>}/>
+                            <Route path="/updateDonor" element={<EditDonorUserProfile/>}/>
                             <Route path="/search" element={<Search/>}/>
                             <Route path="/searchresults" element={<SearchResults/>}/>
                             <Route path="/donor/*" element={<DonorDetails/>}/>
                             <Route path="/admin" element={<AdminPage/>}/>
                             <Route path="/order/*" element={<PreviousOrders/>}/>
-                            <Route path= "/privateuser" element={<UserProfilePrivatePage/>}/>
+                            <Route path="/donororders" element={<PreviousDonorOrders/>}/>
+                            <Route path= "/publicuser" element={<UserProfilePublicPage/>}/>
+                      <Route path= "/publicdonor" element={<DonorProfilePublicPage/>}/>
                       </Fragment>
                         }
                   </Routes>

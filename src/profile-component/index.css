@@ -1,5 +1,4 @@
 body{
-    margin-top:20px;
     background:#f5f5f5;
 }
 /**
@@ -11,6 +10,7 @@ body{
 }
 .panel-heading {
   border-bottom: 0;
+  border-top: 0;
 }
 .panel-title {
   font-size: 17px;
@@ -61,11 +61,11 @@ body{
   margin: 20px 0;
 }
 /*** Profile: Table ***/
-@media (min-width: 992px) {
+/* @media (min-width: 992px) {
   .profile__table tbody th {
     width: 200px;
   }
-}
+} */
 /*** Profile: Recent activity ***/
 .profile-comments__item {
   position: relative;
