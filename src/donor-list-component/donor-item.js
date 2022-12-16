@@ -18,11 +18,11 @@ const DonorItem = ({ donor }) => {
         >
           <div className="m-3" style={{ borderRadius: '15px' }}>
             {
-                (donor.coverPhoto) &&
+                (donor.coverPhoto !== 'coverPhoto.jpeg') &&
                 <img className="w-100 rounded-2" src={`/images/${donor.coverPhoto}`} alt="landing background"/>
             }
             {
-              <img className="w-100 rounded-2" src="/images/background.jfif" alt="landing background"/>
+              <img className="w-100 rounded-2" src="/images/food.jpeg" alt="landing background"/>
             }
           </div>
           <div className="card-body">

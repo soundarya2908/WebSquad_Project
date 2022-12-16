@@ -4,6 +4,7 @@ import './index.css';
 import { Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutThunk } from '../users/user-thunks';
+import React from "react";
 
 function NavBar({ userState }) {
   const {currentUser} = useSelector((state) => state.users)
@@ -16,7 +17,7 @@ function NavBar({ userState }) {
   return (
     <>
       {!userState ? (
-        <div className="bg-image ws-background ">
+        <div className="bg-image ws-background w-100">
           <div className="mask ws-overlap">
             <div className="h-100">
               <div style={{ height: '100%' }}>
@@ -129,51 +130,60 @@ function NavBar({ userState }) {
                   className="row "
                   style={{ height: '80%', paddingLeft: '40px' }}
                 >
-                  <div className="col-6 ">
-                    <div className="d-flex text-black flex-column justify-content-center align-items-left h-100">
-                      <h1
+                  <div className="col-8 col-m-10">
+                    <div className="d-flex text-black flex-column justify-content-center align-items-start align-items-left h-100">
+                      <div className="ps-0 "
                         style={{
-                          fontSize: '50px',
+                          fontSize: '42px',
                           fontWeight: 700,
                           width: '75%',
                         }}
                       >
-                        Hungry? You're in the right place
-                      </h1>
+                        Hungry? <br/>You're in the right place
+                      </div>
                       <p style={{ width: '50%', fontSize: '20px' }}>
                         Web Squads are changing the world by building this app.<br/>
                         Edibles left? Go on and make a change by donating!<br/>
                         Need them? We are here to find someone out there to help you!
                       </p>
                       {
-                    !currentUser ?
-                      <Link to="/login">
+                        !currentUser ?
+                        <Link to="/login">
+                          <Button
+                              type="primary"
+                              shape="round"
+                              // icon={<DownloadOutlined />}
+                              className="mt-3"
+                              size={'large'}
+                          >
+                            Login / Sign Up
+                          </Button>
+                        </Link> :
+                        <Link to="/">
+                          <Button
+                              type="primary"
+                              shape="round"
+                              // icon={<DownloadOutlined />}
+                              className="mt-3"
+                              size={'large'}
+                              onClick={() => handleLogoutBtn()}
+                          >
+                            Logout
+                          </Button>
+                        </Link>
+                      }
+                      <Link to="/search/nutrients" className="col-3">
                         <Button
-                          type="primary"
-                          shape="round"
-                          // icon={<DownloadOutlined />}
-                          className="mt-3"
-                          size={'large'}
-                        >
-                          Login / Sign Up
-                        </Button>
-                      </Link> :
-                      <Link to="/">
-                        <Button
-                          type="primary"
-                          shape="round"
-                          // icon={<DownloadOutlined />}
-                          className="mt-3"
-                          size={'large'}
-                          onClick={() => handleLogoutBtn()}
-                        >
-                          Logout
-                        </Button>
+                            type="primary"
+                            shape="round"
+                            // icon={<DownloadOutlined />}
+                            className="mt-3"
+                            size={'large'}
+                        >Make a Meal Plan</Button>
                       </Link>
-                    }
                     </div>
                   </div>
-                  <div className="col-6">
+                  <div className="col-4 col-m-2">
                     <div></div>
                   </div>
                 </div>

@@ -62,6 +62,7 @@ function App() {
               path="/login"
               element={<Login updateUser={updateUser} userState={user} />}
             />
+            <Route path="/search/nutrients/*" element={<ApiCall/>}/>
             <Route path="/register" element={<Register />} />
             <Route path= "/publicuser" element={<UserProfilePublicPage/>}/>
             <Route path= "/publicdonor/*" element={<DonorProfilePublicPage/>}/>
@@ -103,7 +104,6 @@ function App() {
                   path="/publicuser"
                   element={<UserProfilePublicPage />}
                 />
-                <Route path="/search/nutrients/*" element={<ApiCall/>}/>
               </Fragment>
             )}
           </Routes>
