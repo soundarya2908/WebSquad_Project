@@ -5,25 +5,19 @@ import {useNavigate} from "react-router";
 import {findUserByUsernameThunk, updateUserThunk} from "../services/userprofile-thunk.js";
 
 
-const  UserProfilePage = () => {
+const  UserProfilePublicPage = () => {
   const navigate = useNavigate()
 
-  const {currentUser}= useSelector((state)=> state.users)
+  const userName='rakshikaraju'
   const {userprofile, loading} = useSelector((state) => state.userprofile);
-  
   const dispatch = useDispatch()
   useEffect(() => {
 
-    dispatch(findUserByUsernameThunk(currentUser.userName))
-    }, [dispatch])  
+    dispatch(findUserByUsernameThunk(userName))
+    console.log(userName)
+    }, [dispatch])
   
- const handleOrders = () =>{
-    navigate('/order')
- }
 
-  const handleUpdateUserProfileBtn = () => {
-    navigate('/updateUser')
-}
  return (   
      <>
      <head>
@@ -32,6 +26,9 @@ const  UserProfilePage = () => {
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <div class="container">
+
+           
+
 <div class="row">
         {
                 loading &&
@@ -39,14 +36,14 @@ const  UserProfilePage = () => {
                     Loading...
                 </li>
         }
-      <div class="col-xs-12 col-sm-11">      
+      <div class="col-xs-9 col-sm-12">      
         <div class="panel panel-default">
           <div class="panel-heading">
           <h4 class="panel-title"><strong>User profile</strong></h4>
           </div>
           <div className="panel-body">
             <div className="profile__avatar">
-              <img src={userprofile.profilePhoto} alt="..."/>
+              <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="..."/>
             </div>
             <div className="profile__header">
               <h4>{userprofile.firstName} {userprofile.lastName}<small>{userprofile.occupation}</small></h4>
@@ -57,43 +54,7 @@ const  UserProfilePage = () => {
                 <a href="#">{userprofile.firstName}.com</a>
               </p>
             </div>
-            {/* <div className="profile__header">
-            &nbsp;&nbsp; <span><i className="bi bi-chat">&nbsp;{userprofile.followers}   </i> &nbsp;Followers</span> &nbsp;&nbsp;&nbsp;&nbsp;
-                <span><i className="bi bi-repeat">&nbsp;{userprofile.following}  </i>&nbsp; Following </span> &nbsp;&nbsp;&nbsp;&nbsp;
-                <span><i className="bi bi-hand-thumbs-up">&nbsp;{userprofile.likes} </i>&nbsp; Likes</span>
-            </div> */}
-
-<div class="profile__header">
-            <table class="table profile__table">
-              <tbody>
-                <tr>
-            
-                  <th>
-                    <button
-                className="profile__contact-btn btn btn-block btn-warning float-end" data-toggle="modal" data-target="#profile__contact-form"
-                onClick={handleUpdateUserProfileBtn}>
-              <span><i class="bi bi-person-square"></i></span>  Edit Profile
-            </button>
-            </th>
-            <th>
-            <button
-                className="profile__contact-btn btn btn-block btn-warning" data-toggle="modal" data-target="#profile__contact-form"
-                onClick={handleOrders}>
-                  <span><i class="bi bi-list"></i></span>
-                Previous Food Orders
-            </button>
-            </th>
            
-                </tr>
-                </tbody>
-                </table>
-    
-            
-            {/* &nbsp;&nbsp; <span><i class="bi bi-chat">&nbsp;{donor.followers}   </i> &nbsp;Followers</span> &nbsp;&nbsp;&nbsp;&nbsp;
-                <span><i class="bi bi-repeat">&nbsp;{donor.following}  </i>&nbsp; Following </span> &nbsp;&nbsp;&nbsp;&nbsp;
-                <span><i class="bi bi-hand-thumbs-up">&nbsp;{donor.likes} </i>&nbsp; Likes</span> */}
-
-            </div>
           </div>
         </div>
 
@@ -119,22 +80,27 @@ const  UserProfilePage = () => {
                 <tr>
                   <th><strong>Date of Birth</strong></th>
                   <td>{userprofile.dateOfBirth}</td>
+                  {/* <button
+                className="profile__contact-btn btn btn-lg btn-block btn-danger" data-toggle="modal" data-target="#profile__contact-form"
+                onClick={() => dispatch(updateUserThunk({
+                  ...userprofile,
+                  likes: userprofile.likes + 1
+                }))}>
+                Like : {userprofile.likes}
+            </button> */}
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
 
-      
-
-       
 
       </div>
-     
+      
     </div>
 </div>
      </>
  )
 }
 
-export default UserProfilePage;
+export default UserProfilePublicPage;

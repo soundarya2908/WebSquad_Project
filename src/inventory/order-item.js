@@ -1,17 +1,17 @@
 import React from 'react';
 
 const OrderItem = ({ order }) => {
-  return Object.entries(order).map((key, i) => (
-    <div key={i} className="p-1 col-12 col-lg-6">
-      <div className="card text-start p-1">
-        <div className="row">
-          <div className="col-8">{key}</div>
-          <div className="col-4">
-            <span className="float-end">Available: {order[key]}</span>
+  console.log(order + 'test');
+  return (
+      Object.keys(order).map((key, i) => (
+      <div key={i} className="p-1">
+        <div className="card text-start p-1">
+            <div className="row p-1">
+              <div className="col-9">{key}</div>
+              <div className="col-3 float-end">{order[key]}</div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  ));
+  )));
 };
 export default OrderItem;
