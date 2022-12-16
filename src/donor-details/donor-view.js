@@ -43,19 +43,19 @@ const DonorViewOfDonor = (
                     <div className="image-container">
                         <div className="main_image">
                             {
-                                (donor.image) &&
-                                <img className="w-100 rounded-2" src={`/images/${donor.image}`} alt="landing background"/>
+                                (donor.coverPhoto !== 'coverPhoto.jpeg') &&
+                                <img className="w-100 rounded-2" src={`/images/${donor.coverPhoto}`} alt="landing background"/>
                             }
                             {
-                                <img className="w-100 rounded-2" src="/images/background.jfif" alt="landing background"/>
+                                <img className="w-100 rounded-2" src="/images/food.jpeg" alt="landing background"/>
                             }                        </div>
                         <div className="overlay_image">
                             {
-                                (donor.dp) &&
-                                <img className="w-100 rounded-pill float-start" src={`/images/${donor.dp}`} alt="profile"/>
+                                (donor.profilePhoto !== 'profilePhoto.png') &&
+                                <img className="w-100 rounded-pill float-start" src={`/images/${donor.profilePhoto}`} alt="profile"/>
                             }
                             {
-                                <img className="w-100 rounded-pill float-start" src="/images/rest_logo.jfif" alt="profile"/>
+                                <img className="w-100 rounded-pill float-start" src="/images/food.jpeg" alt="profile"/>
                             }                        </div>
                     </div>
 

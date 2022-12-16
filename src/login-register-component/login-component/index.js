@@ -45,7 +45,7 @@ function Login({ updateUser, userState }) {
         <MDBRow className="g-0">
           <MDBCol md="6">
             <MDBCardImage
-              src="./images/logo.png"
+              src="./images/login.jpg"
               alt="login form"
               className="rounded-start w-100"
             />

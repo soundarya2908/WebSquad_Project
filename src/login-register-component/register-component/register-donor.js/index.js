@@ -44,7 +44,7 @@ function RegisterCustomer() {
         <MDBRow className='g-0'>
 
           <MDBCol md='6'>
-            <MDBCardImage src='./images/register-donor-image.webp' alt="login form" className='rounded-start w-100'/>
+            <MDBCardImage src='./images/login.jpg' alt="login form" className='rounded-start w-100'/>
           </MDBCol>
 
           <MDBCol md='6'>

@@ -32,8 +32,7 @@ const CustomerViewOfDonor = ({ donor }) => {
   const UpdateOrderHandler = () => {
     return (
       <>
-      <div className="col-3">
-        <div className="card">
+        <div className="card mt-5">
           <h5>Your Cart</h5>
           <br />
           <OrderItem order={cart} />
@@ -42,7 +41,6 @@ const CustomerViewOfDonor = ({ donor }) => {
             Place order
           </Button>
         </div>
-      </div>
       </>
     );
   };
@@ -67,17 +65,17 @@ const CustomerViewOfDonor = ({ donor }) => {
         <div className="image-container">
           <div className="main_image">
             {
-                (donor.image) &&
-                <img className="w-100 rounded-2" src={`/images/${donor.image}`} alt="landing background"/>
+                (donor.coverPhoto !== 'coverPhoto.jpeg') &&
+                <img className="w-100 rounded-2" src={`/images/${donor.coverPhoto}`} alt="landing background"/>
             }
             {
-              <img className="w-100 rounded-2" src="/images/background.webp" alt="landing background"/>
+              <img className="w-100 rounded-2" src="/images/food.jpeg" alt="landing background"/>
             }
           </div>
           <div className="overlay_image">
             {
-                (donor.dp) &&
-                <img className="w-100 rounded-pill float-start" src={`/images/${donor.dp}`} alt="profile"/>
+                (donor.profilePhoto !== 'profilePhoto.png') &&
+                <img className="w-100 rounded-pill float-start" src={`/images/${donor.profilePhoto}`} alt="profile"/>
             }
             {
               <img className="w-100 rounded-pill float-start" src="/images/rest_logo.jfif" alt="profile"/>
@@ -130,10 +128,12 @@ const CustomerViewOfDonor = ({ donor }) => {
           </div>
         </div>
       </div>
-      <Link to="/search/nutrients" className="col-3">
-        <Button>Look up Nutritional Value</Button>
+      <div className="col-3">
+      <Link to="/search/nutrients">
+        <Button>Make a Meal Plan</Button>
       </Link>
-      {order && <UpdateOrderHandler />}
+        {order && <UpdateOrderHandler />}
+      </div>
     </div>
   );
 };

@@ -58,6 +58,7 @@ function App() {
               path="/login"
               element={<Login updateUser={updateUser} userState={user} />}
             />
+            <Route path="/search/nutrients/*" element={<ApiCall/>}/>
             <Route path="/register" element={<Register />} />
             {store.getState().users && (
               <Fragment>
@@ -92,7 +93,6 @@ function App() {
                   path="/privateuser"
                   element={<UserProfilePrivatePage />}
                 />
-                <Route path="/search/nutrients/*" element={<ApiCall/>}/>
               </Fragment>
             )}
           </Routes>
