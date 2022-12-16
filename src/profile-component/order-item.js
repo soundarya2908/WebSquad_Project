@@ -16,18 +16,10 @@ const OrderItem = (
           }
     }
 ) => {
-    // console.log(donor._id)
     const foodlist=order.orderList
     for (let i=0; i< foodlist.length; i++) {
         const string1 = foodlist[i];
-        console.log(string1);
      }
-    //  const keys = Object.keys(foodlist);
-    //  Object.values(animals).forEach(val => console.log(val));
-    //   Object.ke
-// print all keys
-
-// console.log(keys);
 
     return(
             <div className="pb-3">
@@ -35,6 +27,8 @@ const OrderItem = (
                     <div className="card-body">
                         <div className="row">
                             <h6 className="col-8">Ordered from {order.donorUserName}</h6>
+                            <h6 className="col-8">Ordered By {order.customerUserName}</h6>
+
                             <h6 className="col-4 small text-end">Order Status is {order.status}</h6>
                         </div>
                        <InventoryItemDonor food={order.orderList}></InventoryItemDonor>

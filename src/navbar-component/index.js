@@ -94,7 +94,23 @@ function NavBar({ userState }) {
                     }
                     {
                       currentUser && 
+                      currentUser.role === 'CUSTOMER'&&
                       <Link to="/profile">
+                      <Button
+                        type="primary"
+                        shape="round"
+                        // icon={<DownloadOutlined />}
+                        className="float-end me-3"
+                        size={'large'}
+                      >
+                        Profile
+                      </Button>
+                    </Link>
+                    }
+                     {
+                      currentUser && 
+                      currentUser.role === 'DONOR'&&
+                      <Link to="/donorprofile">
                       <Button
                         type="primary"
                         shape="round"
@@ -130,17 +146,32 @@ function NavBar({ userState }) {
                         Edibles left? Go on and make a change by donating!<br/>
                         Need them? We are here to find someone out there to help you!
                       </p>
-                      <Link to="/login">
-                        <Button
-                          type="primary"
-                          shape="round"
-                          // icon={<DownloadOutlined />}
-                          className="mt-3"
-                          size={'large'}
-                        >
-                          Login / Sign Up
-                        </Button>
-                      </Link>
+                      {
+                        !currentUser ?
+                        <Link to="/login">
+                          <Button
+                              type="primary"
+                              shape="round"
+                              // icon={<DownloadOutlined />}
+                              className="mt-3"
+                              size={'large'}
+                          >
+                            Login / Sign Up
+                          </Button>
+                        </Link> :
+                        <Link to="/">
+                          <Button
+                              type="primary"
+                              shape="round"
+                              // icon={<DownloadOutlined />}
+                              className="mt-3"
+                              size={'large'}
+                              onClick={() => handleLogoutBtn()}
+                          >
+                            Logout
+                          </Button>
+                        </Link>
+                      }
                       <Link to="/search/nutrients" className="col-3">
                         <Button
                             type="primary"
@@ -244,7 +275,23 @@ function NavBar({ userState }) {
                     }
                     {
                       currentUser && 
+                      currentUser.role === 'CUSTOMER' &&
                       <Link to="/profile">
+                      <Button
+                        type="primary"
+                        shape="round"
+                        // icon={<DownloadOutlined />}
+                        className="float-end me-3"
+                        size={'large'}
+                      >
+                        Profile
+                      </Button>
+                    </Link>
+                    }
+                    {
+                      currentUser && 
+                      currentUser.role === 'DONOR'&&
+                      <Link to="/donorprofile">
                       <Button
                         type="primary"
                         shape="round"
