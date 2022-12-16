@@ -93,7 +93,23 @@ function NavBar({ userState }) {
                     }
                     {
                       currentUser && 
+                      currentUser.role === 'CUSTOMER'&&
                       <Link to="/profile">
+                      <Button
+                        type="primary"
+                        shape="round"
+                        // icon={<DownloadOutlined />}
+                        className="float-end me-3"
+                        size={'large'}
+                      >
+                        Profile
+                      </Button>
+                    </Link>
+                    }
+                     {
+                      currentUser && 
+                      currentUser.role === 'DONOR'&&
+                      <Link to="/donorprofile">
                       <Button
                         type="primary"
                         shape="round"
@@ -249,7 +265,23 @@ function NavBar({ userState }) {
                     }
                     {
                       currentUser && 
+                      currentUser.role === 'CUSTOMER' &&
                       <Link to="/profile">
+                      <Button
+                        type="primary"
+                        shape="round"
+                        // icon={<DownloadOutlined />}
+                        className="float-end me-3"
+                        size={'large'}
+                      >
+                        Profile
+                      </Button>
+                    </Link>
+                    }
+                    {
+                      currentUser && 
+                      currentUser.role === 'DONOR'&&
+                      <Link to="/donorprofile">
                       <Button
                         type="primary"
                         shape="round"
